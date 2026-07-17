@@ -19,11 +19,11 @@ services:
       
       # Tự động tải các Plugin từ SpigotMC:
       # 111867: WebAdmin (Bảng điều khiển Web)
-      # 11480: TreeAssist (Chặt cây tự đổ và tự trồng lại cây non)
-      SPIGET_RESOURCES: "111867,11480"
+      # 9089: EssentialsX (Cung cấp các lệnh cơ bản)
+      SPIGET_RESOURCES: "111867,9089"
       
       # Tự động tải các Plugin từ Modrinth (Nhanh và ổn định hơn):
-      MODRINTH_PROJECTS: "skinsrestorer,essentialsx,chunky,bluemap,gsit"
+      MODRINTH_PROJECTS: "skinsrestorer,chunky,bluemap,gsit"
       
     volumes:
       - ./data:/data
