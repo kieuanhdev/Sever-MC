@@ -1,0 +1,9 @@
+# Bỏ qua thư mục data để không đẩy toàn bộ thế giới (world) và file rác lên Git
+data/*
+
+# Nhưng vẫn giữ lại thư mục plugins để bạn có thể commit các file .jar của plugin lên Git
+!data/plugins/
+
+# Bỏ qua các file tạm thời của hệ điều hành
+.DS_Store
+Thumbs.db
