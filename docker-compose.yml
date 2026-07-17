@@ -8,25 +8,34 @@ services:
     stdin_open: true
     ports:
       - "25565:25565" # Cổng mặc định của Minecraft để người chơi kết nối
-      - "8088:8080"   # Cổng Host 8088 trỏ vào WebAdmin 8080 (Tránh trùng cổng)
       - "8100:8100"   # Cổng cho bản đồ 3D BlueMap (http://IP_Server:8100)
     environment:
-      EULA: "TRUE"              # Tự động đồng ý điều khoản của Mojang
-      TYPE: "PAPER"             # Sử dụng server loại Paper
-      VERSION: "1.20.4"         # Phiên bản Minecraft (1.20.4 cực kỳ ổn định cho plugin hiện nay)
-      ONLINE_MODE: "FALSE"      # Chế độ Crack (không yêu cầu tài khoản Premium)
-      MEMORY: "2G"              # Giới hạn RAM tối đa
-      
-      # Tự động tải các Plugin từ SpigotMC:
-      # 111867: WebAdmin (Bảng điều khiển Web)
-      SPIGET_RESOURCES: "111867"
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "1.20.4"
+      ONLINE_MODE: "FALSE"
+      MEMORY: "2G"
       
       # Tự động tải các Plugin từ Modrinth (Nhanh và ổn định hơn):
       MODRINTH_PROJECTS: "skinsrestorer,chunky,bluemap,gsit"
       
-      # Tải EssentialsX bằng đường link trực tiếp (vì Spigot và Modrinth đều chặn tải tự động)
+      # Tải EssentialsX bằng đường link trực tiếp
       PLUGINS: "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar"
       
     volumes:
       - ./data:/data
+    restart: unless-stopped
+
+  # Bảng điều khiển Web mới (RCON Web Admin - Ổn định tuyệt đối, không sợ lỗi Java)
+  rcon-web:
+    image: itzg/rcon
+    container_name: rcon-web-admin
+    ports:
+      - "8088:4326"
+      - "4327:4327"
+    environment:
+      RWA_RCON_HOST: "mc"
+      RWA_RCON_PORT: "25575"
+      RWA_RCON_PASSWORD: "minecraft"  # Mật khẩu rcon nội bộ của MC
+      RWA_PASSWORD: "admin"           # Mật khẩu để bạn đăng nhập vào web (user là admin)
     restart: unless-stopped
