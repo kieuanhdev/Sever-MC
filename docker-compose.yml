@@ -19,11 +19,13 @@ services:
       
       # Tự động tải các Plugin từ SpigotMC:
       # 111867: WebAdmin (Bảng điều khiển Web)
-      # 9089: EssentialsX (Cung cấp các lệnh cơ bản)
-      SPIGET_RESOURCES: "111867,9089"
+      SPIGET_RESOURCES: "111867"
       
       # Tự động tải các Plugin từ Modrinth (Nhanh và ổn định hơn):
       MODRINTH_PROJECTS: "skinsrestorer,chunky,bluemap,gsit"
+      
+      # Tải EssentialsX bằng đường link trực tiếp (vì Spigot và Modrinth đều chặn tải tự động)
+      PLUGINS: "https://github.com/EssentialsX/Essentials/releases/download/2.22.0/EssentialsX-2.22.0.jar"
       
     volumes:
       - ./data:/data
